@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D62F487F-8AEF-4DB0-AEAA-545AC9561DFF}</ProjectGuid>
+    <ProjectGuid>{B43C8574-E31E-42D5-B61A-A2CF4895809B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My07_02_01_matrix</RootNamespace>
+    <RootNamespace>My16_07_01_ajacencyWDigraph</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -123,9 +123,9 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,17 +141,38 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="matrix.cpp" />
+    <ClCompile Include="adjacencyWDigraph.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="matrix.h" />
+    <ClInclude Include="adjacencyWDigraph.h" />
+    <ClInclude Include="arrayListWithIterator.h" />
+    <ClInclude Include="arrayQueue.h" />
+    <ClInclude Include="arrayStack.h" />
+    <ClInclude Include="binNode.h" />
+    <ClInclude Include="chainNode.h" />
+    <ClInclude Include="chainWithIterator.h" />
+    <ClInclude Include="changeLength1D.h" />
+    <ClInclude Include="delete2dArray.h" />
+    <ClInclude Include="edge.h" />
+    <ClInclude Include="fastUnionFind.h" />
+    <ClInclude Include="graph.h" />
+    <ClInclude Include="graphChain.h" />
+    <ClInclude Include="linearList.h" />
+    <ClInclude Include="make2dArrayNoCatch.h" />
+    <ClInclude Include="minHeap.h" />
+    <ClInclude Include="minPriorityQueue.h" />
     <ClInclude Include="myExceptions.h" />
+    <ClInclude Include="queue.h" />
+    <ClInclude Include="stack.h" />
+    <ClInclude Include="unionFindNode.h" />
+    <ClInclude Include="vertexIterator.h" />
+    <ClInclude Include="weightedEdge.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

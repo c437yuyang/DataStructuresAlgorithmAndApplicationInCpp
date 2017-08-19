@@ -16,7 +16,7 @@ public:
 	int columns() const { return theColumns; }
 	T& operator()(int i, int j) const;
 	matrix<T>& operator=(const matrix<T>&);
-	matrix<T> operator+() const; // unary +
+	//matrix<T> operator+() const; // unary +
 	matrix<T> operator+(const matrix<T>&) const;
 	matrix<T> operator-() const; // unary minus
 	matrix<T> operator-(const matrix<T>&) const;
@@ -194,7 +194,7 @@ ostream& operator<<(ostream& out, const matrix<T>& m)
 	return out;
 }
 
-// for some reason compiler can't create this on its own
+//// for some reason compiler can't create this on its own
 ostream& operator<<(ostream& out, const matrix<int>& m)
 {// Put matrix m into the stream out.
  // One row per line.

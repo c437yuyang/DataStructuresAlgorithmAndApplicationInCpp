@@ -8,8 +8,8 @@ using namespace std;
 int main(void)
 {
    linkedBinaryTree<int> a,x,y,z;
-   y.makeTree(1,a,a);
-   z.makeTree(2,a,a);
+   y.makeTree(1,a,a); //用树的结构来创建一个y结点
+   z.makeTree(2,a,a); //创建一个z结点
    x.makeTree(3,y,z);
    y.makeTree(4,x,a);
    cout << "Number of nodes = ";

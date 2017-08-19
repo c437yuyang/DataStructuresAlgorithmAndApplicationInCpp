@@ -195,7 +195,7 @@ void linkedBinaryTree<E>::levelOrder(void(*theVisit)(binaryTreeNode<E> *))
       catch (queueEmpty) {return;}
       q.pop();
    }
-}  
+}
 
 template <class E>
 int linkedBinaryTree<E>::height(binaryTreeNode<E> *t)
