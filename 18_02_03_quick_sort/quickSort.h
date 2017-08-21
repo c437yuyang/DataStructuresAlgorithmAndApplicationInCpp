@@ -8,14 +8,16 @@
 using namespace std;
 
 #pragma region 书上的版本
+
+
 template <class T>
 void quickSort(T a[], int n)
 {// Sort a[0 : n - 1] using the quick sort method.
 	if (n <= 1) return;
 	// move largest element to right end
-	int max = indexOfMax(a, n);
+	int max = indexOfMax(a, n); //其实这里也可以不交换，假如第一个数是最大数，那么后面一直寻找比它大的数，就会一直在内存往后找比它大的，可能会找很久，因此限制一个寻找范围就行了，但是其实结果不影响，因为取决于rigthcursor和leftend交换
 	swap(a[n - 1], a[max]);
-	quickSort(a, 0, n - 2);
+	quickSort(a, 0, n - 1);
 }
 
 template <class T>
@@ -52,6 +54,111 @@ void quickSort(T a[], int leftEnd, int rightEnd)
 	quickSort(a, leftEnd, rightCursor - 1);   // sort left segment
 	quickSort(a, rightCursor + 1, rightEnd);  // sort right segment
 }
+
+
+
+template <class T>
+void quickSort_with_border_conditon(T a[], int n)
+{// Sort a[0 : n - 1] using the quick sort method.
+	if (n <= 1) return;
+	// move largest element to right end
+	//int max = indexOfMax(a, n); //其实这里也可以不交换，假如第一个数是最大数，那么后面一直寻找比它大的数，就会一直在内存往后找比它大的，可能会找很久，因此限制一个寻找范围就行了，但是其实结果不影响，因为取决于rigthcursor和leftend交换
+	//swap(a[n - 1], a[max]);//这里改为限制边界条件就可以了
+	quickSort_with_border_conditon(a, 0, n - 1);
+}
+
+template <class T>
+void quickSort_with_border_conditon(T a[], int leftEnd, int rightEnd)
+{// Sort a[leftEnd:rightEnd], a[rightEnd+1] >= a[leftEnd:rightEnd].
+	if (leftEnd >= rightEnd) return;
+
+	int leftCursor = leftEnd,        // left-to-right cursor
+		rightCursor = rightEnd + 1;  // right-to-left cursor
+	T pivot = a[leftEnd];
+
+	// swap elements >= pivot on left side
+	// with elements <= pivot on right side
+	while (true)
+	{
+		do
+		{// find >= element on left side
+			leftCursor++;
+		} while (a[leftCursor] < pivot && leftCursor < rightEnd); //限制边界
+
+		do
+		{// find <= element on right side
+			rightCursor--;
+		} while (a[rightCursor] > pivot && rightCursor > leftEnd);
+
+		if (leftCursor >= rightCursor) break;  // swap pair not found
+		swap(a[leftCursor], a[rightCursor]);
+	}
+
+	// place pivot
+	a[leftEnd] = a[rightCursor];
+	a[rightCursor] = pivot;
+
+	quickSort_with_border_conditon(a, leftEnd, rightCursor - 1);   // sort left segment
+	quickSort_with_border_conditon(a, rightCursor + 1, rightEnd);  // sort right segment
+}
+
+
+
+template <class T>
+void median_of_three_quickSort(T a[], int n)
+{
+	if (n <= 1) return;
+	// move largest element to right end
+	int max = indexOfMax(a, n);
+	swap(a[n - 1], a[max]);
+	median_of_three_quickSort(a, 0, n - 2);
+}
+
+template <class T>
+void median_of_three_quickSort(T a[], int leftEnd, int rightEnd)
+{
+	if (leftEnd >= rightEnd) return;
+	if (rightEnd - leftEnd >= 2) 
+	{
+		int mid = (rightEnd + leftEnd) / 2;
+		if ((a[leftEnd] <= a[mid] && a[rightEnd] >= a[mid])||
+			(a[leftEnd] >= a[mid] && a[rightEnd] <= a[mid])) //mid为中值
+			swap(a[mid], a[leftEnd]);
+		if ((a[leftEnd] <= a[rightEnd] && a[mid] >= a[rightEnd])
+			||(a[leftEnd] >= a[rightEnd] && a[mid] <= a[rightEnd]))//右边是中值
+			swap(a[leftEnd], a[rightEnd]);
+	}
+
+	int leftCursor = leftEnd,        // left-to-right cursor
+		rightCursor = rightEnd + 1;  // right-to-left cursor
+	T pivot = a[leftEnd];
+
+	// swap elements >= pivot on left side
+	// with elements <= pivot on right side
+	while (true)
+	{
+		do
+		{// find >= element on left side
+			leftCursor++;
+		} while (a[leftCursor] < pivot);
+
+		do
+		{// find <= element on right side
+			rightCursor--;
+		} while (a[rightCursor] > pivot);
+
+		if (leftCursor >= rightCursor) break;  // swap pair not found
+		swap(a[leftCursor], a[rightCursor]);
+	}
+
+	// place pivot
+	a[leftEnd] = a[rightCursor];
+	a[rightCursor] = pivot;
+
+	median_of_three_quickSort(a, leftEnd, rightCursor - 1);   // sort left segment
+	median_of_three_quickSort(a, rightCursor + 1, rightEnd);  // sort right segment
+}
+
 #pragma endregion
 
 

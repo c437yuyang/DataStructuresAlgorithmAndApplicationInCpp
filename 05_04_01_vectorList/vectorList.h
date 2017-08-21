@@ -67,7 +67,7 @@ vectorList<T>::vectorList(int initialCapacity)
 template<class T>
 vectorList<T>::vectorList(const vectorList<T>& theList)
 {// Copy constructor.
-   element = new vector<T>(*theList.element);
+   element = new vector<T>(*theList.element); //从另一个vector初始化当前vector
 }
 
 template<class T>

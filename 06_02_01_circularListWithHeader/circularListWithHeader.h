@@ -18,6 +18,9 @@ class circularListWithHeader
       // constructor
       circularListWithHeader();
 
+	  //destructor  我自己加的
+	  ~circularListWithHeader();
+
       // some methods
       int size() const {return listSize;}
       int indexOf(const T& theElement) const;
@@ -40,6 +43,19 @@ circularListWithHeader<T>::circularListWithHeader()
 }
 
 template<class T>
+circularListWithHeader<T>::~circularListWithHeader()
+{
+	chainNode<T> *node = headerNode->next;
+	while (node != headerNode)
+	{
+		chainNode<T> *node1 = node->next;
+		delete node;
+		node = node1;
+	}
+	delete headerNode;
+}
+
+template<class T>
 void circularListWithHeader<T>::checkIndex(int theIndex) const
 {// Verify that theIndex is between 0 and listSize - 1.
    if (theIndex < 0 || theIndex >= listSize)
@@ -56,7 +72,7 @@ int circularListWithHeader<T>::indexOf(const T& theElement) const
  // Return -1 if theElement not in list.
 
    // Put theElement in header node
-   headerNode->element = theElement;
+   headerNode->element = theElement; //这样的话，如果没找到才会在头结点停下来，不然会一直往下寻找，其实也不用这样，可以直接在while的时候加一个判断!=headernode就行了
 
    // search the chain for theElement
    chainNode<T>* currentNode = headerNode->next;

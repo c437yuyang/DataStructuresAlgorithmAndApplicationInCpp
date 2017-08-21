@@ -29,7 +29,7 @@ public:
 	// ADT methods
 	bool empty() const { return listSize == 0; }
 	int size() const { return listSize; }
-	T& get(int theIndex) const;
+	T& get(int theIndex) const; //这里是否应该有两个版本，分别返回const和非const的
 	int indexOf(const T& theElement) const;
 	void erase(int theIndex);
 	void insert(int theIndex, const T& theElement);
@@ -119,7 +119,7 @@ void arrayList<T>::erase(int theIndex)
 }
 
 template<class T>
-void arrayList<T>::insert(int theIndex, const T& theElement)
+void arrayList<T>::insert(int theIndex, const T& theElement) //在第Index个元素之前插入，插入后元素就是Index位置
 {// Insert theElement so that its index is theIndex.
 	if (theIndex < 0 || theIndex > listSize)
 	{// invalid index
@@ -137,7 +137,7 @@ void arrayList<T>::insert(int theIndex, const T& theElement)
 
 	// shift elements right one position
 	copy_backward(element + theIndex, element + listSize,
-		element + listSize + 1);
+		element + listSize + 1); //逆着复制才行，不能正着复制
 
 	element[theIndex] = theElement;
 
@@ -154,7 +154,8 @@ void arrayList<T>::output(ostream& out) const
 template <class T>
 ostream& operator<<(ostream& out, const arrayList<T>& x)
 {
-	x.output(out); return out;
+	x.output(out); 
+	return out;
 }
 
 #endif

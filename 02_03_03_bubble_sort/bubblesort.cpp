@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm> // has copy
 #include <iterator>
+#include <time.h>
 using namespace std;
 
 
@@ -97,5 +98,10 @@ int main()
 	cout << "After the sort, a[0:9] = ";
 	copy(a, a + 10, ostream_iterator<int>(cout, " "));
 	cout << endl;
+
+
+
+	clock(); //
+
 	return 0;
 }

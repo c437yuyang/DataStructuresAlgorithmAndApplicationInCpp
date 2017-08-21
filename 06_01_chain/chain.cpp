@@ -1,21 +1,34 @@
 // test the class chain
+
+#ifdef _DEBUG
+//for memory leak check
+#define _CRTDBG_MAP_ALLOC //使生成的内存dump包含内存块分配的具体代码为止
+#include <stdlib.h> 
+#include <crtdbg.h>
+#define CheckMemoryLeak _CrtSetDbgFlag( _CrtSetDbgFlag( _CRTDBG_REPORT_FLAG )| _CRTDBG_LEAK_CHECK_DF)
+#endif 
+
 #include<iostream>
 #include "linearList.h"
 #include "chain.h"
 
 using namespace std;
 
+
 int main()
 {
+#ifdef _DEBUG
+	CheckMemoryLeak;
+#endif
    // test constructor
    linearList<double> *x = new chain<double>;
    chain<int> y, z;
 
    // test size
    cout << "Initial size of x, y, and z = "
-        << x->size() << ", "
-        << y.size() << ", "
-        << z.size() << endl;
+	   << x->size() << ", "
+	   << y.size() << ", "
+	   << z.size() << endl;
 
    // test empty
    if (x->empty()) cout << "x is empty" << endl;
@@ -88,5 +101,9 @@ int main()
    y.insert(0,6);
    y.insert(0,7);
    cout << "y is " << y << endl;
+   
+   cout << sizeof(chain<double>) << endl;//12,虚函数指针4+chainNode指针4+listSize4 = 12
+   delete x;
+
    return 0;
 }

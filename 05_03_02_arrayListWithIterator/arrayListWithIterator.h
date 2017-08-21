@@ -7,11 +7,11 @@
 #ifndef arrayList_
 #define arrayList_
 
-#include<iostream>
-#include<sstream>
-#include<string>
-#include<algorithm>
-#include<iterator>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <algorithm>
+#include <iterator>
 #include "linearList.h"
 #include "myExceptions.h"
 #include "changeLength1D.h"
@@ -60,7 +60,7 @@ public:
 
 		// dereferencing operators
 		T& operator*() const { return *position; }
-		T* operator->() const { return &*position; }
+		T* operator->() const { return &*position; } //return position¾ÍÐÐÁË°É
 
 		// increment
 		iterator& operator++()   // preincrement

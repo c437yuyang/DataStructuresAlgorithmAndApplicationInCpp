@@ -16,29 +16,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chainNode.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="extendedChain.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="extendedLinearList.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="linearList.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="myExceptions.h">
-      <Filter>源文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="chainWithIterator.h">
-      <Filter>源文件</Filter>
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="extendedChain.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="extendedLinearList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="linearList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="myExceptions.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="extendedChain.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="chainWithIterator.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

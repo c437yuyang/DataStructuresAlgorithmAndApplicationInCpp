@@ -15,7 +15,9 @@
 using namespace std;
 
 class linkedDigraph;
-template <class T> class linkedWDigraph;
+template <class T> 
+class linkedWDigraph;
+
 
 template<class T>
 class chain : public linearList<T>
