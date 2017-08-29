@@ -2,12 +2,13 @@
 #define matrix_
 
 #include "myExceptions.h"
-
+#include <iostream>
+using std::ostream;
 using namespace std;
 template<class T>
 class matrix
 {
-	friend ostream& operator<<(ostream&, const matrix<T>&);
+	//friend ostream& operator<<(ostream&, const matrix<T>&);
 public:
 	matrix(int theRows = 0, int theColumns = 0);
 	matrix(const matrix<T>&);
@@ -22,11 +23,25 @@ public:
 	matrix<T> operator-(const matrix<T>&) const;
 	matrix<T> operator*(const matrix<T>&) const;
 	matrix<T>& operator+=(const T&);
+	void output(ostream &os) const;
 private:
 	int theRows,    // number of rows in matrix
 		theColumns; // number of columns in matrix
 	T *element;     // element array
 };
+
+template<class T>
+void matrix<T>::output(ostream &out) const
+{
+	int k = 0;  // index into element array
+	for (int i = 0; i < theRows; i++)
+	{// do row i
+		for (int j = 0; j < theColumns; j++)
+			out << element[k++] << "  ";
+		// row i finished
+		out << endl;
+	}
+}
 
 template<class T>
 matrix<T>::matrix(int theRows, int theColumns)
@@ -138,32 +153,32 @@ matrix<T> matrix<T>::operator*(const matrix<T>& m) const
 
 	// define cursors for *this, m, and w
 	// and initialize to location of (1,1) element
-	int ct = 0, cm = 0, cw = 0;
+	int l = 0, r = 0, rlt = 0; //左矩阵指针，右矩阵指针，结果矩阵指针
 	 
 	// compute w(i,j) for all i and j
-	for (int i = 1; i <= theRows; i++)
+	for (int i = 1; i <= theRows; i++) //i和j和k都只是循环变量，没有参加下标计算
 	{// compute row i of result
 		for (int j = 1; j <= m.theColumns; j++)
 		{ // compute first term of w(i,j)
-			T sum = element[ct] * m.element[cm];
+			T sum = element[l] * m.element[r];
 
 			// add in remaining terms
-			for (int k = 2; k <= theColumns; k++)
+			for (int k = 1; k != theColumns; k++) //k只是循环变量，并没有参加下标计算
 			{
-				ct++;  // next term in row i of *this
-				cm += m.theColumns;  // next in column j of m
-				sum += element[ct] * m.element[cm];
+				l++;  // next term in row i of *this
+				r += m.theColumns;  // next in column j of m
+				sum += element[l] * m.element[r];
 			}
-			w.element[cw++] = sum;  // save w(i,j)
+			w.element[rlt++] = sum;  // save w(i,j)
 
 			// reset to start of row and next column
-			ct -= theColumns - 1;
-			cm = j;
+			l -= theColumns - 1;
+			r = j;
 		}
 
 		// reset to start of next row and first column
-		ct += theColumns;
-		cm = 0;
+		l += theColumns;
+		r = 0;
 	}
 
 	return w;
@@ -177,38 +192,49 @@ matrix<T>& matrix<T>::operator+=(const T& x)
 	return *this;
 }
 
+#pragma region 修改输出为内部提供output接口，外部非成员函数直接调用output实现
+//template<class T>
+//ostream& operator<<(ostream& out, const matrix<T>& m)
+//{// Put matrix m into the stream out.
+// // One row per line.
+//	int k = 0;  // index into element array
+//	for (int i = 0; i < m.theRows; i++)
+//	{// do row i
+//		for (int j = 0; j < m.theColumns; j++)
+//			out << m.element[k++] << "  ";
+//
+//		// row i finished
+//		out << endl;
+//	}
+//
+//	return out;
+//}
+//
+////// for some reason compiler can't create this on its own
+//ostream& operator<<(ostream& out, const matrix<int>& m)
+//{// Put matrix m into the stream out.
+// // One row per line.
+//	int k = 0;  // index into element array
+//	for (int i = 0; i < m.theRows; i++)
+//	{// do row i
+//		for (int j = 0; j < m.theColumns; j++)
+//			out << m.element[k++] << "  ";
+//
+//		// row i finished
+//		out << endl;
+//	}
+//
+//	return out;
+//}
+
 template<class T>
-ostream& operator<<(ostream& out, const matrix<T>& m)
-{// Put matrix m into the stream out.
- // One row per line.
-	int k = 0;  // index into element array
-	for (int i = 0; i < m.theRows; i++)
-	{// do row i
-		for (int j = 0; j < m.theColumns; j++)
-			out << m.element[k++] << "  ";
-
-		// row i finished
-		out << endl;
-	}
-
+ostream& operator<<(ostream& out, const matrix<T> &mat) 
+{
+	mat.output(out);
 	return out;
 }
 
-//// for some reason compiler can't create this on its own
-ostream& operator<<(ostream& out, const matrix<int>& m)
-{// Put matrix m into the stream out.
- // One row per line.
-	int k = 0;  // index into element array
-	for (int i = 0; i < m.theRows; i++)
-	{// do row i
-		for (int j = 0; j < m.theColumns; j++)
-			out << m.element[k++] << "  ";
+#pragma endregion
 
-		// row i finished
-		out << endl;
-	}
-
-	return out;
-}
 
 #endif

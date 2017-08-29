@@ -16,7 +16,7 @@ void permutations(T list[], int k, int m)
       copy(list, list+m+1,
             ostream_iterator<T>(cout, ""));
       cout << endl;
-   } while (next_permutation(list, list+m+1));
+   } while (next_permutation(list, list+m+1)); //要求必须初始的时候排列是有序的，比如'1','2','3',如果排列成了'2','3','1'，就只能得到这之后的排列
 }
 
 int main()

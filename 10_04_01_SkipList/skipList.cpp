@@ -1,11 +1,12 @@
-// test sorted chain class
-#include<iostream>
-#include "sortedChain.h"
+// test skip list class
+#include <iostream>
+#include "skipList.h"
+
 using namespace std;
 
 void main()
 {
-   sortedChain<int, int> z;
+   skipList<int, int> z(1000);
    pair<int, int> p;
 
    // test insert
@@ -21,7 +22,7 @@ void main()
    z.insert(p);
    p.first = 12; p.second = 60;
    z.insert(p);
-   cout << "The chain is " << z << endl;
+   cout << "The dictionary is " << z << endl;
    cout << "Its size is " << z.size() << endl;
 
    // test find
@@ -35,10 +36,6 @@ void main()
    z.erase(6);
    z.erase(12);
    cout << "Deleted 1, 2, 6, 12" << endl;
-   cout << "The chain is " << z << endl;
+   cout << "The dictionary is " << z << endl;
    cout << "Its size is " << z.size() << endl;
-
-   hash<string> hs;
-   int i = hs("aaa");
-
 }

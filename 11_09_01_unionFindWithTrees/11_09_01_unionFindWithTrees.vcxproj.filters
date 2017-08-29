@@ -15,28 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="derivedArrayStack.cpp">
+    <ClCompile Include="unionFindWithTrees.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="changeLength1D.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="myExceptions.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="linearList.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="stack.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="arrayList.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="derivedArrayStack.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

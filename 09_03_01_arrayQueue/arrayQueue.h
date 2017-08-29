@@ -38,7 +38,7 @@ class arrayQueue : public queue<T>
               theFront = (theFront + 1) % arrayLength;
               queue[theFront].~T();  // destructor for T
            }
-	  virtual static static void push(const T& theElement) = 0;
+	  void push(const T& theElement);
    private:
       int theFront;       // 1 counterclockwise from theFront element
       int theBack;        // position of theBack element
@@ -72,7 +72,7 @@ void arrayQueue<T>::push(const T& theElement)
 
       // copy elements into new array
       int start = (theFront + 1) % arrayLength;
-      if (start < 2)
+      if (start < 2) //start = 1
          // no wrap around
          copy(queue + start, queue + start + arrayLength - 1, newQueue);
       else

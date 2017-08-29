@@ -10,7 +10,8 @@
 
 using namespace std;
 
-template <class K> class hash_1;
+template <class K> 
+class hash_1;
 
 template<>//对于string类型，需要转换
 class hash_1<string>

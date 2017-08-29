@@ -21,10 +21,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="matrix.h">
-      <Filter>源文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="myExceptions.h">
-      <Filter>源文件</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

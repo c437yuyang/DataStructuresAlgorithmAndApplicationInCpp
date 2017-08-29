@@ -3,9 +3,6 @@
 
 #ifndef hashChains_
 #define hashChains_
-
-
-
 #include <iostream>
 #include "hash.h"  // mapping functions from K to nonnegative integer
 #include "dictionary.h"
